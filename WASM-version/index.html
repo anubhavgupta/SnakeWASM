@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        html, body {
+            background: black;
+        }
+        canvas{
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="400" height="400"></canvas>
+    <script type="module">
+        import { handleKeyEvents } from  "../JS-version/keyhandle.js";
+        import { load } from './loadWASM.js';
+        
+        async function run(){
+            const {gameStep, snk} = await load();
+            const map = {
+                    'ArrowUp': 1,
+                    'ArrowDown': 3,
+                    'ArrowRight': 2,
+                    'ArrowLeft': 4
+            };
+            handleKeyEvents((e)=>{
+                const keyVal = map[e];
+                snk.handleEvents(keyVal);
+            })
+            let lastTime = 0;
+            function gameLoop(time) {
+                if(time > lastTime + 100) {
+                    lastTime = time;
+                    gameStep();
+                }
+                requestAnimationFrame(gameLoop);   
+            }
+
+            gameLoop();
+        }
+
+
+        run();
+    </script>
+</body>
+</html>

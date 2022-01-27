@@ -1,0 +1,27 @@
+{
+  "targets": {
+    "debug": {
+      "binaryFile": "build/untouched.wasm",
+      "textFile": "build/untouched.wat",
+      "sourceMap": true,
+      "debug": true,
+      "exportRuntime": true
+    },
+    "release": {
+      "binaryFile": "build/optimized.wasm",
+      "textFile": "build/optimized.wat",
+      "jsFile": "build/optimized.js",
+      "idlFile": "build/optimized.webidl",
+      "tsdFile": "build/optimized.d.ts",
+      "runtime": "stub",
+      "sourceMap": false,
+      "debug": false,
+      "optimizeLevel": 3,
+      "shrinkLevel": 2,
+      "converge": true,
+      "noAssert": true,
+      "exportRuntime": true
+    }
+  },
+  "options": {}
+}
